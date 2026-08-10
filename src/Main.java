@@ -16,17 +16,25 @@ import java.util.Scanner;
 
   
     public static void main(String[] args) {
-     // Password Side
-     System.out.print("Enter Password : ");
-     String password = sc.nextLine();
+     // Login part
+     System.out.println("=== Login ===");
 
-     if (!password.equals("1234")){
-      System.out.println("Incorrect password. Try again.");
-      sc.close();
-      return;
-     }
+    System.out.print("Username: ");
+    String username = sc.nextLine();
 
-        System.out.println("Login SUccessful....");
+    System.out.print("Password: ");
+    String password = sc.nextLine();
+
+    if (!username.equals("root") || !password.equals("root")) {
+        System.out.println("Invalid username or password.");
+        System.out.println("Access denied!");
+        sc.close();
+        return;
+    }
+
+    System.out.println("Login successful!");
+    System.out.println();
+     
         System.out.println("=== Gym Membership Management System ===");
         dbAvailable = DatabaseConnection.connect();
         if (dbAvailable) {
