@@ -13,7 +13,20 @@ import java.util.Scanner;
     private static Scanner sc = new Scanner(System.in);
     private static boolean dbAvailable;
 
+
+  
     public static void main(String[] args) {
+     // Password Side
+     System.out.print("Enter Password : ");
+     String password = sc.nextLine();
+
+     if (!password.equals("1234")){
+      System.out.println("Incorrect password. Try again.");
+      sc.close();
+      return;
+     }
+
+        System.out.println("Login SUccessful....");
         System.out.println("=== Gym Membership Management System ===");
         dbAvailable = DatabaseConnection.connect();
         if (dbAvailable) {
