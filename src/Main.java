@@ -14,7 +14,9 @@ import java.util.Scanner;
     private static boolean dbAvailable;
 
     public static void main(String[] args) {
-        System.out.println("=== Gym Membership Management System ===");
+        System.out.println("\n╔════════════════════════════════════════════════╗");
+        System.out.println("║    === Gym Membership Management System ===    ║");
+        System.out.println("╚════════════════════════════════════════════════╝\n");
         dbAvailable = DatabaseConnection.connect();
         if (dbAvailable) {
             loadDataFromDatabase();
