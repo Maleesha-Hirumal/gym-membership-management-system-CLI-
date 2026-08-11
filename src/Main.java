@@ -16,6 +16,9 @@ import java.util.Scanner;
 
   
     public static void main(String[] args) {
+        System.out.println("\n╔════════════════════════════════════════════════╗");
+        System.out.println("║    === Gym Membership Management System ===    ║");
+        System.out.println("╚════════════════════════════════════════════════╝\n");
      // Login part
      System.out.println("=== Login ===");
 
@@ -35,7 +38,6 @@ import java.util.Scanner;
     System.out.println("Login successful!");
     System.out.println();
      
-        System.out.println("=== Gym Membership Management System ===");
         dbAvailable = DatabaseConnection.connect();
         if (dbAvailable) {
             loadDataFromDatabase();
