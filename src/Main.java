@@ -13,10 +13,31 @@ import java.util.Scanner;
     private static Scanner sc = new Scanner(System.in);
     private static boolean dbAvailable;
 
+
+  
     public static void main(String[] args) {
         System.out.println("\n╔════════════════════════════════════════════════╗");
         System.out.println("║    === Gym Membership Management System ===    ║");
         System.out.println("╚════════════════════════════════════════════════╝\n");
+     // Login part
+     System.out.println("=== Login ===");
+
+    System.out.print("Username: ");
+    String username = sc.nextLine();
+
+    System.out.print("Password: ");
+    String password = sc.nextLine();
+
+    if (!username.equals("root") || !password.equals("root")) {
+        System.out.println("Invalid username or password.");
+        System.out.println("Access denied!");
+        sc.close();
+        return;
+    }
+
+    System.out.println("Login successful!");
+    System.out.println();
+     
         dbAvailable = DatabaseConnection.connect();
         if (dbAvailable) {
             loadDataFromDatabase();
