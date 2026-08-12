@@ -17,7 +17,7 @@ public class Member5_Graph {
 
     // BFS
     public void bfs(int startID) {
-        if (!adjList.containsKey(startID)) { System.out.println("Member not found in graph."); return; }
+        if (!adjList.containsKey(startID)) { System.out.println("No member found with the given ID."); return; }
         Set<Integer> visited = new HashSet<>();
         Queue<Integer> queue = new LinkedList<>();
         queue.add(startID);
@@ -39,7 +39,7 @@ public class Member5_Graph {
 
     // DFS
     public void dfs(int startID) {
-        if (!adjList.containsKey(startID)) { System.out.println("Member not found in graph."); return; }
+        if (!adjList.containsKey(startID)) { System.out.println("No member found with the given ID."); return; }
         Set<Integer> visited = new HashSet<>();
         System.out.print("DFS referral chain from member " + startID + ": ");
         dfsHelper(startID, visited);
@@ -55,9 +55,9 @@ public class Member5_Graph {
     }
 
     public void printGraph() {
-        if (adjList.isEmpty()) { System.out.println("Graph is empty."); return; }
+        if (adjList.isEmpty()) { System.out.println("No referral records are currently available."); return; }
         for (int node : adjList.keySet()) {
-            System.out.println(node + " -> " + adjList.get(node));
+            System.out.println("Member " + node + " reffered " + adjList.get(node));
         }
     }
 
