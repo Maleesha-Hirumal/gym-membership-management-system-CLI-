@@ -5,8 +5,8 @@ import java.util.Scanner;
 
     private static Member1_ArraysLinkedList member1 = new Member1_ArraysLinkedList();
     private static Member2_StackQueue member2 = new Member2_StackQueue();
-    private static Member3_bst member3 = new Member3_bst();
-    private static Member4_avltree member4 = new Member4_avltree();
+    private static Member3_BST member3 = new Member3_BST();
+    private static Member4_AVLTree member4 = new Member4_AVLTree();
     private static Member5_Graph member5 = new Member5_Graph();
     private static Member6_HashSet member6 = new Member6_HashSet();
 
@@ -346,9 +346,11 @@ import java.util.Scanner;
 
         DatabaseConnection.saveAllMembers(all);
 
-        System.out.println("\n┌───────────────────────────────────────────┐");
-        System.out.println("│       DATA SAVED SUCCESSFULLY             │");
-        System.out.println("└───────────────────────────────────────────┘");
+        if (dbAvailable) {
+            System.out.println("\n┌───────────────────────────────────────────┐");
+            System.out.println("│       DATA SAVED SUCCESSFULLY             │");
+            System.out.println("└───────────────────────────────────────────┘");
+        }
     }
 
     // 9.Referral Program
