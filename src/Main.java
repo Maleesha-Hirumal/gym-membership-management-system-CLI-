@@ -33,7 +33,7 @@ import java.util.Scanner;
         return;
     }
 
-    System.out.println("Login successful!");
+    System.out.println("✔ Login successful!");
     System.out.println();
      
         dbAvailable = DatabaseConnection.connect();
