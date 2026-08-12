@@ -13,9 +13,10 @@ import java.util.Scanner;
     private static Scanner sc = new Scanner(System.in);
     private static boolean dbAvailable;
 
-
-  
     public static void main(String[] args) {
+        System.out.println("\n╔════════════════════════════════════════════════╗");
+        System.out.println("║        Gym Membership Management System        ║");
+        System.out.println("╚════════════════════════════════════════════════╝\n");
      // Login part
      System.out.println("\n╔════════════════════════════════════════════════╗");
         System.out.println("║        GYM MEMBERSHIP MANAGEMENT SYSTEM        ║");
@@ -40,7 +41,6 @@ System.out.println("\n╔══════════════════�
         System.out.println("╚════════════════════════════════════════════════╝\n");
     System.out.println();
      
-        System.out.println("=== Gym Membership Management System ===");
         dbAvailable = DatabaseConnection.connect();
         if (dbAvailable) {
             loadDataFromDatabase();
@@ -62,7 +62,7 @@ System.out.println("\n╔══════════════════�
                 case 9: referralGraphDemo(); break;
                 case 10: saveToDatabase(); break;
                 case 0: System.out.println("Exiting..."); break;
-                default: System.out.println("Invalid choice.");
+                default: System.out.println("✘ Invalid choice.");
             }
         } while (choice != 0);
 
@@ -72,20 +72,49 @@ System.out.println("\n╔══════════════════�
 
     // Main Function Menu
     private static void printMenu() {
-        System.out.println("\n--- Main Menu ---");
-        System.out.println("1. Register new member");
-        System.out.println("2. View all members");
-        System.out.println("3. Find a Member");
-        System.out.println("4. Remove a Member");
-        System.out.println("5. Undo last action");
-        System.out.println("6. Trainer Waiting Queue");
-        System.out.println("7. Sort all Members");
-        System.out.println("8. View Sorted Member Records (Trees)");
-        System.out.println("9. Referral Program");
-        System.out.println("10. Save all data to database");
-        System.out.println("0. Exit");
-        System.out.print("Enter choice: ");
+
+        System.out.println("\n┌───────────────────────────────────────────────────────────────┐");
+        System.out.println("│             GYM MEMBERSHIP MANAGEMENT SYSTEM                  │");
+        System.out.println("├───────────────────────────────────────────────────────────────┤");
+        System.out.println("│  1. Register New Member                                       │");
+        System.out.println("│  2. View All Members                                          │");
+        System.out.println("│  3. Find a Member                                             │");
+        System.out.println("│  4. Remove a Member                                           │");
+        System.out.println("│  5. Undo Last Action                                          │");
+        System.out.println("│  6. Trainer Waiting Queue                                     │");
+        System.out.println("│  7. Sort All Members                                          │");
+        System.out.println("│  8. View Sorted Member Records                                │");
+        System.out.println("│  9. Referral Program                                          │");
+        System.out.println("│ 10. Save All Data to Database                                 │");
+        System.out.println("│  0. Exit                                                      │");
+        System.out.println("└───────────────────────────────────────────────────────────────┘");
+        System.out.print("Enter your choice: ");
     }
+
+     private static void queueMenu() {
+
+         System.out.println("\n┌───────────────────────────────────────────────┐");
+         System.out.println("│          TRAINER WAITING QUEUE                │");
+         System.out.println("├───────────────────────────────────────────────┤");
+         System.out.println("│ 1. Add Member to Queue                        │");
+         System.out.println("│ 2. Serve Next Member                          │");
+         System.out.println("│ 0. Back to Main Menu                          │");
+         System.out.println("└───────────────────────────────────────────────┘");
+         System.out.print("Enter your choice: ");
+     }
+     private static void referralMenu() {
+
+         System.out.println("\n┌───────────────────────────────────────────────┐");
+         System.out.println("│             REFERRAL PROGRAM                  │");
+         System.out.println("├───────────────────────────────────────────────┤");
+         System.out.println("│ 1. Add Referral                               │");
+         System.out.println("│ 2. Breadth First Search (BFS)                 │");
+         System.out.println("│ 3. Depth First Search (DFS)                   │");
+         System.out.println("│ 4. Print Referral Graph                       │");
+         System.out.println("│ 0. Back to Main Menu                          │");
+         System.out.println("└───────────────────────────────────────────────┘");
+         System.out.print("Enter your choice: ");
+     }
 
     private static int readInt() {
         while (!sc.hasNextInt()) {
@@ -98,31 +127,53 @@ System.out.println("\n╔══════════════════�
     }
 
     // 1. Register a new Member
-    private static void registerMember() {
-        System.out.print("Member ID: ");
+    private static void registerMember(){
+        System.out.println("\n┌────────────────────────────────────────────────────┐");
+        System.out.println("│              REGISTER NEW MEMBER                   │");
+        System.out.println("└────────────────────────────────────────────────────┘");
+
+        System.out.print("Member ID : ");
         int id = readInt();
-        System.out.print("Name: ");
+
+        System.out.print("Name      : ");
         String name = sc.nextLine();
-        System.out.print("Email: ");
+
+        System.out.print("Email     : ");
         String email = sc.nextLine();
-        System.out.print("Phone: ");
+
+        System.out.print("Phone No. : ");
         String phone = sc.nextLine();
 
         MembershipPlan[] plans = member1.getMembershipPlans();
-        System.out.println("\nAvailable membership plans:");
+
+        System.out.println("\n┌───────────────────────────────────────────┐");
+        System.out.println("│            AVAILABLE MEMBERSHIP PLANS     │");
+        System.out.println("├────┬────────────┬──────────┬──────────────┤");
+        System.out.printf("│ %-2s │ %-10s │ %-8s │ %-12s │%n",
+                "No", "Plan", "Duration", "Fee");
+        System.out.println("├────┼────────────┼──────────┼──────────────┤");
+
         for (int i = 0; i < plans.length; i++) {
             MembershipPlan p = plans[i];
-            System.out.println((i + 1) + ". " + p.getPlanName()
-                    + " - " + p.getDurationMonths() + " month(s)"
-                    + " - Rs. " + p.getFee());
+
+            String duration = p.getDurationMonths() + " M";
+
+            System.out.printf("│ %-2d │ %-10s │ %-8s │ Rs. %-7.2f  │%n",
+                    (i + 1),
+                    p.getPlanName(),
+                    duration,
+                    p.getFee());
         }
+
+        System.out.println("└────┴────────────┴──────────┴──────────────┘");
+
         System.out.print("Choose a plan number: ");
         int planChoice = readInt();
         MembershipPlan chosenPlan = plans[Math.max(0, Math.min(planChoice - 1, plans.length - 1))];
 
         // Check email is already in the data base or not for prevent email duplication
         if (!member6.addEmail(email)) {
-            System.out.println("Registration failed: email already registered (duplicate prevented).");
+            System.out.println("✘ Registration failed: email already registered (duplicate prevented).");
             return;
         }
 
@@ -142,13 +193,19 @@ System.out.println("\n╔══════════════════�
 
     // 2. View All Registered Members
     private static void viewAllMembers() {
-        System.out.println("\n--- All members (linked list traversal) ---");
+        System.out.println("\n┌───────────────────────────────────────────┐");
+        System.out.println("│    All members (linked list traversal)    │");
+        System.out.println("└───────────────────────────────────────────┘");
         member1.traverse();
     }
 
     // 3.Search a Member
     private static void searchMember() {
-        System.out.print("Enter member ID to search: ");
+        System.out.println("\n┌───────────────────────────────────────────┐");
+        System.out.println("│              SEARCH MEMBER                │");
+        System.out.println("└───────────────────────────────────────────┘");
+
+        System.out.print("Enter Member ID : ");
         int id = readInt();
 
         long start = System.nanoTime();
@@ -160,17 +217,27 @@ System.out.println("\n╔══════════════════�
         long hashTime = System.nanoTime() - start;
 
         if (viaHash != null) {
-            System.out.println("Found: " + viaHash);
+            System.out.println("\n┌───────────────────────────────────────────┐");
+            System.out.println("│            MEMBER FOUND                   │");
+            System.out.println("├───────────────────────────────────────────┤");
+            System.out.println(" " + viaHash);
+            System.out.println("└───────────────────────────────────────────┘");
             System.out.println("Linear search time: " + linearTime + " ns");
             System.out.println("Hash table lookup time: " + hashTime + " ns");
         } else {
-            System.out.println("Member not found.");
+            System.out.println("\n┌───────────────────────────────────────────┐");
+            System.out.println("│         MEMBER NOT FOUND                  │");
+            System.out.println("└───────────────────────────────────────────┘");
         }
     }
 
     // 4. Delete a Member
     private static void deleteMember() {
-        System.out.print("Enter member ID to delete: ");
+        System.out.println("\n┌───────────────────────────────────────────┐");
+        System.out.println("│             DELETE MEMBER                 │");
+        System.out.println("└───────────────────────────────────────────┘");
+
+        System.out.print("Enter Member ID : ");
         int id = readInt();
         boolean removed = member1.delete(id);
         member3.delete(id);
@@ -178,10 +245,14 @@ System.out.println("\n╔══════════════════�
 
         if (removed) {
             member2.pushAction("Deleted member " + id);
-            System.out.println("Member deleted from memory.");
+            System.out.println("\n┌───────────────────────────────────────────┐");
+            System.out.println("│      MEMBER DELETED SUCCESSFULLY          │");
+            System.out.println("└───────────────────────────────────────────┘");
             System.out.println("(Use menu option 10 to make this permanent in the database.)");
         } else {
-            System.out.println("Member not found.");
+            System.out.println("\n┌───────────────────────────────────────────┐");
+            System.out.println("│         MEMBER NOT FOUND                  │");
+            System.out.println("└───────────────────────────────────────────┘");
         }
     }
 
@@ -189,19 +260,22 @@ System.out.println("\n╔══════════════════�
     private static void undoLastAction() {
         String action = member2.popAction();
         if (action != null) {
-            System.out.println("Undo: " + action);
+            System.out.println("\n┌───────────────────────────────────────────┐");
+            System.out.println("│               UNDO ACTION                 │");
+            System.out.println("└───────────────────────────────────────────┘");
+            System.out.println(" " + action);
         }
     }
 
     // 6. Waiting list
     private static void frontDeskQueue() {
-        System.out.println("1. Add member to queue   2. Serve next member");
+        queueMenu();
         int c = readInt();
         if (c == 1) {
             System.out.print("Member ID to enqueue: ");
             int id = readInt();
             Member m = member1.linearSearch(id);
-            if (m != null) member2.enqueue(m); else System.out.println("Member not found.");
+            if (m != null) member2.enqueue(m); else System.out.println("✘ Member not found.");
         } else {
             Member served = member2.dequeue();
             if (served != null) System.out.println("Now serving: " + served);
@@ -212,7 +286,7 @@ System.out.println("\n╔══════════════════�
     // 7. Sorting
     private static void sortingDemo() {
         Member[] base = member1.toArray();
-        if (base.length == 0) { System.out.println("No members to sort."); return; }
+        if (base.length == 0) { System.out.println("✘ No members to sort."); return; }
 
         Member[] bubble = base.clone();
         Member[] selection = base.clone();
@@ -226,29 +300,42 @@ System.out.println("\n╔══════════════════�
         long t4 = System.nanoTime(); member5.mergeSort(merge, 0, merge.length - 1); long mergeTime = System.nanoTime() - t4;
         long t5 = System.nanoTime(); member6.quickSort(quick, 0, quick.length - 1); long quickTime = System.nanoTime() - t5;
 
-        System.out.println("\n--- Sorting comparison (by member ID, in nanoseconds) ---");
-        System.out.println("Bubble Sort:    " + bubbleTime);
-        System.out.println("Selection Sort: " + selectionTime);
-        System.out.println("Insertion Sort: " + insertionTime);
-        System.out.println("Merge Sort:     " + mergeTime);
-        System.out.println("Quick Sort:     " + quickTime);
+        System.out.println("\n┌────────────────────────────────────────────────────┐");
+        System.out.println("│            SORTING PERFORMANCE                     │");
+        System.out.println("├──────────────────────┬─────────────────────────────┤");
+        System.out.printf("│ Bubble Sort          │ %-25d │%n", bubbleTime);
+        System.out.printf("│ Selection Sort       │ %-25d │%n", selectionTime);
+        System.out.printf("│ Insertion Sort       │ %-25d │%n", insertionTime);
+        System.out.printf("│ Merge Sort           │ %-25d │%n", mergeTime);
+        System.out.printf("│ Quick Sort           │ %-25d │%n", quickTime);
+        System.out.println("└──────────────────────┴─────────────────────────────┘");
         System.out.println("(Times fluctuate on small datasets - add more members for a fairer comparison.)");
     }
 
     // 8. BST / AVL traversals
     private static void treeTraversals() {
-        System.out.println("\n--- BST traversals ---");
+        System.out.println("\n┌───────────────────────────────────────────┐");
+        System.out.println("│            TREE TRAVERSALS                │");
+        System.out.println("└───────────────────────────────────────────┘");
         System.out.print("Inorder:   ");   member3.inorder();
         System.out.print("Preorder:  ");  member3.preorder();
         System.out.print("Postorder: "); member3.postorder();
 
-        System.out.println("\n--- AVL Tree inorder ---");
+        System.out.println("\n┌───────────────────────────────────────────┐");
+        System.out.println("│             AVL Tree inorder              │");
+        System.out.println("└───────────────────────────────────────────┘");
         member4.inorder();
     }
 
     // load data from database
     private static void loadDataFromDatabase() {
         List<Member> members = DatabaseConnection.loadAllMembers();
+
+        if (members == null || members.isEmpty()) {
+            System.out.println("✘ No members found in database.");
+            return;
+        }
+
         for (Member m : members) {
             member1.insert(m);
             member6.put(m);
@@ -257,20 +344,30 @@ System.out.println("\n╔══════════════════�
             member4.insert(m);
             member5.addMemberNode(m.getMemberID());
         }
-        if (!members.isEmpty()) {
-            System.out.println("Loaded " + members.size() + " member(s) from the database.");
-        }
+
+        System.out.println("✓ " + members.size() +
+                " member(s) loaded successfully.");
     }
 
     // 10. Send data to Data Base
     private static void saveToDatabase() {
         Member[] all = member1.toArray();
+        System.out.println("\n┌───────────────────────────────────────────┐");
+        System.out.println("│        SAVING TO DATABASE...              │");
+        System.out.println("└───────────────────────────────────────────┘");
+
         DatabaseConnection.saveAllMembers(all);
+
+        if (dbAvailable) {
+            System.out.println("\n┌───────────────────────────────────────────┐");
+            System.out.println("│       DATA SAVED SUCCESSFULLY             │");
+            System.out.println("└───────────────────────────────────────────┘");
+        }
     }
 
     // 9.Referral Program
     private static void referralGraphDemo() {
-        System.out.println("1. Add referral   2. BFS   3. DFS   4. Print graph");
+        referralMenu();
         int c = readInt();
         if (c == 1) {
             System.out.print("Referrer member ID: ");
