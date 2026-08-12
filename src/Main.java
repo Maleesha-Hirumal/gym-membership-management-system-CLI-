@@ -17,7 +17,11 @@ import java.util.Scanner;
   
     public static void main(String[] args) {
      // Login part
-     System.out.println("=== Login ===");
+     System.out.println("\n╔════════════════════════════════════════════════╗");
+        System.out.println("║        GYM MEMBERSHIP MANAGEMENT SYSTEM        ║");
+        System.out.println("║                LOGIN REQUIRED                  ║");
+        System.out.println("╚════════════════════════════════════════════════╝\n");
+
 
     System.out.print("Username: ");
     String username = sc.nextLine();
