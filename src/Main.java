@@ -57,7 +57,7 @@ import java.util.Scanner;
                 case 9: referralGraphDemo(); break;
                 case 10: saveToDatabase(); break;
                 case 0: System.out.println("Exiting..."); break;
-                default: System.out.println("Invalid choice.");
+                default: System.out.println("✘ Invalid choice.");
             }
         } while (choice != 0);
 
@@ -270,7 +270,7 @@ import java.util.Scanner;
             System.out.print("Member ID to enqueue: ");
             int id = readInt();
             Member m = member1.linearSearch(id);
-            if (m != null) member2.enqueue(m); else System.out.println("Member not found.");
+            if (m != null) member2.enqueue(m); else System.out.println("✘ Member not found.");
         } else {
             Member served = member2.dequeue();
             if (served != null) System.out.println("Now serving: " + served);
@@ -281,7 +281,7 @@ import java.util.Scanner;
     // 7. Sorting
     private static void sortingDemo() {
         Member[] base = member1.toArray();
-        if (base.length == 0) { System.out.println("No members to sort."); return; }
+        if (base.length == 0) { System.out.println("✘ No members to sort."); return; }
 
         Member[] bubble = base.clone();
         Member[] selection = base.clone();
