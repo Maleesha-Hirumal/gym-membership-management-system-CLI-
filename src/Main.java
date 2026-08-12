@@ -17,11 +17,13 @@ import java.util.Scanner;
         System.out.println("\n╔════════════════════════════════════════════════╗");
         System.out.println("║        Gym Membership Management System        ║");
         System.out.println("╚════════════════════════════════════════════════╝\n");
+
+
      // Login part
-     System.out.println("\n╔════════════════════════════════════════════════╗");
-        System.out.println("║        GYM MEMBERSHIP MANAGEMENT SYSTEM        ║");
-        System.out.println("║                LOGIN REQUIRED                  ║");
-        System.out.println("╚════════════════════════════════════════════════╝\n");
+
+
+        System.out.println("--------------- LOGIN REQUIRED ---------------");
+        System.out.println();
 
 
     System.out.print("Enter Username: ");
@@ -31,16 +33,14 @@ import java.util.Scanner;
     String password = sc.nextLine();
 
     if (!username.equals("root") || !password.equals("root")) {
-        System.out.println("Invalid username or password.");
+        System.out.println("\n-------- Invalid username or password. --------");
         sc.close();
         return;
     }
-System.out.println("\n╔════════════════════════════════════════════════╗");
-        System.out.println("║        GYM MEMBERSHIP MANAGEMENT SYSTEM        ║");
-        System.out.println("║                LOGIN SUCCESSFULL               ║");
-        System.out.println("╚════════════════════════════════════════════════╝\n");
+
+        System.out.println("\n------------- LOGIN SUCCESSFULLY -------------");
     System.out.println();
-     
+
         dbAvailable = DatabaseConnection.connect();
         if (dbAvailable) {
             loadDataFromDatabase();
