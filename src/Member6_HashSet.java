@@ -41,7 +41,7 @@ public class Member6_HashSet {
         }
     }
         if (!hasRecord){
-            System.out.println("No memberr records are currently stored.");
+            System.out.println("✘ No memberr records are currently stored.");
         }
     }
 
