@@ -23,15 +23,14 @@ import java.util.Scanner;
         System.out.println("╚════════════════════════════════════════════════╝\n");
 
 
-    System.out.print("Username: ");
+    System.out.print("Enter Username: ");
     String username = sc.nextLine();
 
-    System.out.print("Password: ");
+    System.out.print("Enter Password: ");
     String password = sc.nextLine();
 
     if (!username.equals("root") || !password.equals("root")) {
         System.out.println("Invalid username or password.");
-        System.out.println("Access denied!");
         sc.close();
         return;
     }
