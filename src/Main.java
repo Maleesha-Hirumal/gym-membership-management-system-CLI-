@@ -168,7 +168,7 @@ import java.util.Scanner;
 
         // Check email is already in the data base or not for prevent email duplication
         if (!member6.addEmail(email)) {
-            System.out.println("Registration failed: email already registered (duplicate prevented).");
+            System.out.println("✘ Registration failed: email already registered (duplicate prevented).");
             return;
         }
 
