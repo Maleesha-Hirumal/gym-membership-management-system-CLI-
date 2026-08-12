@@ -35,8 +35,10 @@ import java.util.Scanner;
         sc.close();
         return;
     }
-
-    System.out.println("Login successful!");
+System.out.println("\n╔════════════════════════════════════════════════╗");
+        System.out.println("║        GYM MEMBERSHIP MANAGEMENT SYSTEM        ║");
+        System.out.println("║                LOGIN SUCCESSFULL               ║");
+        System.out.println("╚════════════════════════════════════════════════╝\n");
     System.out.println();
      
         System.out.println("=== Gym Membership Management System ===");
