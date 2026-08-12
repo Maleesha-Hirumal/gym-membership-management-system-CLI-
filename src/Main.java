@@ -27,7 +27,7 @@ import java.util.Scanner;
     String password = sc.nextLine();
 
     if (!username.equals("root") || !password.equals("root")) {
-        System.out.println("Invalid username or password.");
+        System.out.println("✘ Invalid username or password.");
         System.out.println("Access denied!");
         sc.close();
         return;
@@ -168,7 +168,7 @@ import java.util.Scanner;
 
         // Check email is already in the data base or not for prevent email duplication
         if (!member6.addEmail(email)) {
-            System.out.println("Registration failed: email already registered (duplicate prevented).");
+            System.out.println("✘ Registration failed: email already registered (duplicate prevented).");
             return;
         }
 
@@ -325,6 +325,12 @@ import java.util.Scanner;
     // load data from database
     private static void loadDataFromDatabase() {
         List<Member> members = DatabaseConnection.loadAllMembers();
+
+        if (members == null || members.isEmpty()) {
+            System.out.println("✘ No members found in database.");
+            return;
+        }
+
         for (Member m : members) {
             member1.insert(m);
             member6.put(m);
@@ -333,9 +339,9 @@ import java.util.Scanner;
             member4.insert(m);
             member5.addMemberNode(m.getMemberID());
         }
-        if (!members.isEmpty()) {
-            System.out.println("Loaded " + members.size() + " member(s) from the database.");
-        }
+
+        System.out.println("✓ " + members.size() +
+                " member(s) loaded successfully.");
     }
 
     // 10. Send data to Data Base
