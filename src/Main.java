@@ -13,11 +13,9 @@ import java.util.Scanner;
     private static Scanner sc = new Scanner(System.in);
     private static boolean dbAvailable;
 
-
-  // test
     public static void main(String[] args) {
         System.out.println("\n╔════════════════════════════════════════════════╗");
-        System.out.println("║    === Gym Membership Management System ===    ║");
+        System.out.println("║        Gym Membership Management System        ║");
         System.out.println("╚════════════════════════════════════════════════╝\n");
      // Login part
      System.out.println("=== Login ===");
@@ -80,7 +78,7 @@ import java.util.Scanner;
         System.out.println("│  5. Undo Last Action                                          │");
         System.out.println("│  6. Trainer Waiting Queue                                     │");
         System.out.println("│  7. Sort All Members                                          │");
-        System.out.println("│  8. View Sorted Member Records (Trees)                        │");
+        System.out.println("│  8. View Sorted Member Records                                │");
         System.out.println("│  9. Referral Program                                          │");
         System.out.println("│ 10. Save All Data to Database                                 │");
         System.out.println("│  0. Exit                                                      │");
@@ -143,7 +141,7 @@ import java.util.Scanner;
 
         MembershipPlan[] plans = member1.getMembershipPlans();
 
-        System.out.println("\n┌────┬────────────┬──────────┬──────────────┐");
+        System.out.println("\n┌───────────────────────────────────────────┐");
         System.out.println("│            AVAILABLE MEMBERSHIP PLANS     │");
         System.out.println("├────┬────────────┬──────────┬──────────────┤");
         System.out.printf("│ %-2s │ %-10s │ %-8s │ %-12s │%n",
@@ -155,7 +153,7 @@ import java.util.Scanner;
 
             String duration = p.getDurationMonths() + " M";
 
-            System.out.printf("│ %-2d │ %-10s │ %-8s │ Rs. %-7.2f │%n",
+            System.out.printf("│ %-2d │ %-10s │ %-8s │ Rs. %-7.2f  │%n",
                     (i + 1),
                     p.getPlanName(),
                     duration,
@@ -190,7 +188,9 @@ import java.util.Scanner;
 
     // 2. View All Registered Members
     private static void viewAllMembers() {
-        System.out.println("\n--- All members (linked list traversal) ---");
+        System.out.println("\n┌───────────────────────────────────────────┐");
+        System.out.println("│    All members (linked list traversal)    │");
+        System.out.println("└───────────────────────────────────────────┘");
         member1.traverse();
     }
 
@@ -257,9 +257,8 @@ import java.util.Scanner;
         if (action != null) {
             System.out.println("\n┌───────────────────────────────────────────┐");
             System.out.println("│               UNDO ACTION                 │");
-            System.out.println("├───────────────────────────────────────────┤");
-            System.out.println(" " + action);
             System.out.println("└───────────────────────────────────────────┘");
+            System.out.println(" " + action);
         }
     }
 
@@ -317,7 +316,9 @@ import java.util.Scanner;
         System.out.print("Preorder:  ");  member3.preorder();
         System.out.print("Postorder: "); member3.postorder();
 
-        System.out.println("\n--- AVL Tree inorder ---");
+        System.out.println("\n┌───────────────────────────────────────────┐");
+        System.out.println("│             AVL Tree inorder              │");
+        System.out.println("└───────────────────────────────────────────┘");
         member4.inorder();
     }
 
