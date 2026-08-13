@@ -196,7 +196,7 @@ One plan can be linked to many members (one-to-many).
 | Task 2 | M D B Deneth |CIT-25-01-0574| Stack, Queue, Bubble Sort |
 | Task 3 |---|---| Binary Search Tree, Selection Sort |
 | Task 4 |---|---| AVL Tree, Insertion Sort |
-| Task 5 | P A A Vimod | CIT-25-01-0574 | Graph, BFS/DFS, Merge Sort |
+| Task 5 | P A A Vimod | CIT-25-01-0569 | Graph, BFS/DFS, Merge Sort |
 | Task 6 |---|---| Hash Table, Set ADT, Quick Sort |
 
 *(Replace with actual names before submission.)*
