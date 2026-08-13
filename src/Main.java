@@ -20,9 +20,8 @@ import java.util.Scanner;
 
 
      // Login part
-
-
         System.out.println("--------------- LOGIN REQUIRED ---------------");
+        System.out.println("For demo Log in Purpose  ( User Name : root  ,  Password : root)...!");
         System.out.println();
 
 
@@ -208,22 +207,13 @@ import java.util.Scanner;
         System.out.print("Enter Member ID : ");
         int id = readInt();
 
-        long start = System.nanoTime();
-        Member viaLinear = member1.linearSearch(id);
-        long linearTime = System.nanoTime() - start;
-
-        start = System.nanoTime();
         Member viaHash = member6.get(id);
-        long hashTime = System.nanoTime() - start;
 
         if (viaHash != null) {
             System.out.println("\n┌───────────────────────────────────────────┐");
             System.out.println("│            MEMBER FOUND                   │");
-            System.out.println("├───────────────────────────────────────────┤");
-            System.out.println(" " + viaHash);
             System.out.println("└───────────────────────────────────────────┘");
-            System.out.println("Linear search time: " + linearTime + " ns");
-            System.out.println("Hash table lookup time: " + hashTime + " ns");
+            System.out.println(" " + viaHash);
         } else {
             System.out.println("\n┌───────────────────────────────────────────┐");
             System.out.println("│         MEMBER NOT FOUND                  │");
