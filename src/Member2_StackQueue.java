@@ -11,7 +11,7 @@ public class Member2_StackQueue {
 
     public void pushAction(String action) {
         if (top == undoStack.length - 1) {
-            System.out.println("Undo stack is full.");
+            System.out.println("⚠ Undo stack is full.");
             return;
         }
         undoStack[++top] = action;
@@ -19,7 +19,7 @@ public class Member2_StackQueue {
 
     public String popAction() {
         if (top == -1) {
-            System.out.println("No actions to undo.");
+            System.out.println("✘ No actions to undo.");
             return null;
         }
         return undoStack[top--];
@@ -33,7 +33,7 @@ public class Member2_StackQueue {
 
     public void enqueue(Member member) {
         if (count == queue.length) {
-            System.out.println("Trainer queue is full.");
+            System.out.println("⚠ Trainer queue is full.");
             return;
         }
         rear = (rear + 1) % queue.length;
@@ -43,7 +43,7 @@ public class Member2_StackQueue {
 
     public Member dequeue() {
         if (count == 0) {
-            System.out.println("No members waiting for a trainer.");
+            System.out.println("✘ No members waiting for a trainer.");
             return null;
         }
         Member m = queue[front];
@@ -54,7 +54,7 @@ public class Member2_StackQueue {
 
     public void showQueue() {
         if (count == 0) {
-            System.out.println("No one waiting For a trainer.");
+            System.out.println("✘ No one waiting For a trainer.");
             return;
         }
         int idx = front;

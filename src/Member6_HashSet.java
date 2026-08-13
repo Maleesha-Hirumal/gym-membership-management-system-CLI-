@@ -33,8 +33,15 @@ public class Member6_HashSet {
     }
 
     public void printTable() {
+        boolean hasRecord = false;
         for (int i = 0; i < TABLE_SIZE; i++) {
-            if (!table[i].isEmpty()) System.out.println("Bucket " + i + ": " + table[i]);
+            if (!table[i].isEmpty()) {
+                hasRecord = true;
+                System.out.println("Bucket " + i + ": " + table[i]);
+            }
+        }
+        if (!hasRecord) {
+            System.out.println("No member records are currently stored.");
         }
     }
 
