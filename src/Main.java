@@ -17,25 +17,29 @@ import java.util.Scanner;
         System.out.println("\n╔════════════════════════════════════════════════╗");
         System.out.println("║        Gym Membership Management System        ║");
         System.out.println("╚════════════════════════════════════════════════╝\n");
-     // Login part
-     System.out.println("=== Login ===");
 
-    System.out.print("Username: ");
+
+     // Login part
+        System.out.println("--------------- LOGIN REQUIRED ---------------");
+        System.out.println("For demo Log in Purpose  ( User Name : root  ,  Password : root)...!");
+        System.out.println();
+
+
+    System.out.print("Enter Username: ");
     String username = sc.nextLine();
 
-    System.out.print("Password: ");
+    System.out.print("Enter Password: ");
     String password = sc.nextLine();
 
     if (!username.equals("root") || !password.equals("root")) {
-        System.out.println("Invalid username or password.");
-        System.out.println("Access denied!");
+        System.out.println("\n-------- Invalid username or password. --------");
         sc.close();
         return;
     }
 
-    System.out.println("Login successful!");
+        System.out.println("\n------------- LOGIN SUCCESSFULLY -------------");
     System.out.println();
-     
+
         dbAvailable = DatabaseConnection.connect();
         if (dbAvailable) {
             loadDataFromDatabase();
@@ -57,7 +61,7 @@ import java.util.Scanner;
                 case 9: referralGraphDemo(); break;
                 case 10: saveToDatabase(); break;
                 case 0: System.out.println("Exiting..."); break;
-                default: System.out.println("Invalid choice.");
+                default: System.out.println("✘ Invalid choice.");
             }
         } while (choice != 0);
 
@@ -168,7 +172,7 @@ import java.util.Scanner;
 
         // Check email is already in the data base or not for prevent email duplication
         if (!member6.addEmail(email)) {
-            System.out.println("Registration failed: email already registered (duplicate prevented).");
+            System.out.println("✘ Registration failed: email already registered (duplicate prevented).");
             return;
         }
 
@@ -203,22 +207,13 @@ import java.util.Scanner;
         System.out.print("Enter Member ID : ");
         int id = readInt();
 
-        long start = System.nanoTime();
-        Member viaLinear = member1.linearSearch(id);
-        long linearTime = System.nanoTime() - start;
-
-        start = System.nanoTime();
         Member viaHash = member6.get(id);
-        long hashTime = System.nanoTime() - start;
 
         if (viaHash != null) {
             System.out.println("\n┌───────────────────────────────────────────┐");
             System.out.println("│            MEMBER FOUND                   │");
-            System.out.println("├───────────────────────────────────────────┤");
-            System.out.println(" " + viaHash);
             System.out.println("└───────────────────────────────────────────┘");
-            System.out.println("Linear search time: " + linearTime + " ns");
-            System.out.println("Hash table lookup time: " + hashTime + " ns");
+            System.out.println(" " + viaHash);
         } else {
             System.out.println("\n┌───────────────────────────────────────────┐");
             System.out.println("│         MEMBER NOT FOUND                  │");
@@ -270,7 +265,7 @@ import java.util.Scanner;
             System.out.print("Member ID to enqueue: ");
             int id = readInt();
             Member m = member1.linearSearch(id);
-            if (m != null) member2.enqueue(m); else System.out.println("Member not found.");
+            if (m != null) member2.enqueue(m); else System.out.println("✘ Member not found.");
         } else {
             Member served = member2.dequeue();
             if (served != null) System.out.println("Now serving: " + served);
@@ -281,7 +276,7 @@ import java.util.Scanner;
     // 7. Sorting
     private static void sortingDemo() {
         Member[] base = member1.toArray();
-        if (base.length == 0) { System.out.println("No members to sort."); return; }
+        if (base.length == 0) { System.out.println("✘ No members to sort."); return; }
 
         Member[] bubble = base.clone();
         Member[] selection = base.clone();
@@ -325,6 +320,12 @@ import java.util.Scanner;
     // load data from database
     private static void loadDataFromDatabase() {
         List<Member> members = DatabaseConnection.loadAllMembers();
+
+        if (members == null || members.isEmpty()) {
+            System.out.println("✘ No members found in database.");
+            return;
+        }
+
         for (Member m : members) {
             member1.insert(m);
             member6.put(m);
@@ -333,9 +334,9 @@ import java.util.Scanner;
             member4.insert(m);
             member5.addMemberNode(m.getMemberID());
         }
-        if (!members.isEmpty()) {
-            System.out.println("Loaded " + members.size() + " member(s) from the database.");
-        }
+
+        System.out.println("✓ " + members.size() +
+                " member(s) loaded successfully.");
     }
 
     // 10. Send data to Data Base

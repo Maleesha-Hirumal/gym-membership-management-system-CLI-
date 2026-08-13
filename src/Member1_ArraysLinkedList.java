@@ -64,7 +64,7 @@ public class Member1_ArraysLinkedList {
 
     public void traverse() {
         if (head == null) {
-            System.out.println("No members yet.");
+            System.out.println("✘ No members found.");
             return;
         }
         Node temp = head;
