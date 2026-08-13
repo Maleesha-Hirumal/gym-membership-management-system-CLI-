@@ -48,7 +48,7 @@ public class Member6_HashSet {
     // Set ADT (duplicate email prevention)
     private HashSet<String> emailSet = new HashSet<>();
 
-    /** Time: O(1) average. Returns false if the email is already registered. */
+    // Time: O(1) average. Returns false if the email is already registered.
     public boolean addEmail(String email) {
         return emailSet.add(email);
     }
