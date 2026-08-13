@@ -193,11 +193,11 @@ One plan can be linked to many members (one-to-many).
 | Task | Name | Student No | Component |
 |---|---|---|---|
 | Task 1 | H M Hirumal | CIT-25-01-0337 | Arrays, Linked List, Linear Search |
-| Task 2 | M D B Deneth |CIT-25-01-0574| Stack, Queue, Bubble Sort |
-| Task 3 |---|---| Binary Search Tree, Selection Sort |
-| Task 4 |---|---| AVL Tree, Insertion Sort |
-| Task 5 |---|---| Graph, BFS/DFS, Merge Sort |
-| Task 6 |---|---| Hash Table, Set ADT, Quick Sort |
+| Task 2 | M D B Deneth | CIT-25-01-0574 | Stack, Queue, Bubble Sort |
+| Task 3 | D A L C Perera | CIT-25-01-0348 | Binary Search Tree, Selection Sort |
+| Task 4 | M W R Rashmika | CIT-25-01-0356 | AVL Tree, Insertion Sort |
+| Task 5 | P A A Vimod | CIT-25-01-0569 | Graph, BFS/DFS, Merge Sort |
+| Task 6 | H S S L Perera | CIT-25-01-0345| Hash Table, Set ADT, Quick Sort |
 
 *(Replace with actual names before submission.)*
 
