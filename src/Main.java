@@ -5,39 +5,41 @@ import java.util.Scanner;
 
     private static Member1_ArraysLinkedList member1 = new Member1_ArraysLinkedList();
     private static Member2_StackQueue member2 = new Member2_StackQueue();
-    private static Member3_bst member3 = new Member3_bst();
-    private static Member4_avltree member4 = new Member4_avltree();
+    private static Member3_BST member3 = new Member3_BST();
+    private static Member4_AVLTree member4 = new Member4_AVLTree();
     private static Member5_Graph member5 = new Member5_Graph();
     private static Member6_HashSet member6 = new Member6_HashSet();
 
     private static Scanner sc = new Scanner(System.in);
     private static boolean dbAvailable;
 
-
-  
     public static void main(String[] args) {
         System.out.println("\n╔════════════════════════════════════════════════╗");
-        System.out.println("║    === Gym Membership Management System ===    ║");
+        System.out.println("║        Gym Membership Management System        ║");
         System.out.println("╚════════════════════════════════════════════════╝\n");
-     // Login part
-     System.out.println("=== Login ===");
 
-    System.out.print("Username: ");
+
+     // Login part
+        System.out.println("--------------- LOGIN REQUIRED ---------------");
+        System.out.println("For demo Log in Purpose  ( User Name : root  ,  Password : root)...!");
+        System.out.println();
+
+
+    System.out.print("Enter Username: ");
     String username = sc.nextLine();
 
-    System.out.print("Password: ");
+    System.out.print("Enter Password: ");
     String password = sc.nextLine();
 
     if (!username.equals("root") || !password.equals("root")) {
-        System.out.println("Invalid username or password.");
-        System.out.println("Access denied!");
+        System.out.println("\n-------- Invalid username or password. --------");
         sc.close();
         return;
     }
 
-    System.out.println("Login successful!");
+        System.out.println("\n------------- LOGIN SUCCESSFULLY -------------");
     System.out.println();
-     
+
         dbAvailable = DatabaseConnection.connect();
         if (dbAvailable) {
             loadDataFromDatabase();
@@ -59,7 +61,7 @@ import java.util.Scanner;
                 case 9: referralGraphDemo(); break;
                 case 10: saveToDatabase(); break;
                 case 0: System.out.println("Exiting..."); break;
-                default: System.out.println("Invalid choice.");
+                default: System.out.println("✘ Invalid choice.");
             }
         } while (choice != 0);
 
@@ -80,7 +82,7 @@ import java.util.Scanner;
         System.out.println("│  5. Undo Last Action                                          │");
         System.out.println("│  6. Trainer Waiting Queue                                     │");
         System.out.println("│  7. Sort All Members                                          │");
-        System.out.println("│  8. View Sorted Member Records (Trees)                        │");
+        System.out.println("│  8. View Sorted Member Records                                │");
         System.out.println("│  9. Referral Program                                          │");
         System.out.println("│ 10. Save All Data to Database                                 │");
         System.out.println("│  0. Exit                                                      │");
@@ -143,7 +145,7 @@ import java.util.Scanner;
 
         MembershipPlan[] plans = member1.getMembershipPlans();
 
-        System.out.println("\n┌────┬────────────┬──────────┬──────────────┐");
+        System.out.println("\n┌───────────────────────────────────────────┐");
         System.out.println("│            AVAILABLE MEMBERSHIP PLANS     │");
         System.out.println("├────┬────────────┬──────────┬──────────────┤");
         System.out.printf("│ %-2s │ %-10s │ %-8s │ %-12s │%n",
@@ -155,7 +157,7 @@ import java.util.Scanner;
 
             String duration = p.getDurationMonths() + " M";
 
-            System.out.printf("│ %-2d │ %-10s │ %-8s │ Rs. %-7.2f │%n",
+            System.out.printf("│ %-2d │ %-10s │ %-8s │ Rs. %-7.2f  │%n",
                     (i + 1),
                     p.getPlanName(),
                     duration,
@@ -170,7 +172,7 @@ import java.util.Scanner;
 
         // Check email is already in the data base or not for prevent email duplication
         if (!member6.addEmail(email)) {
-            System.out.println("Registration failed: email already registered (duplicate prevented).");
+            System.out.println("✘ Registration failed: email already registered (duplicate prevented).");
             return;
         }
 
@@ -190,7 +192,9 @@ import java.util.Scanner;
 
     // 2. View All Registered Members
     private static void viewAllMembers() {
-        System.out.println("\n--- All members (linked list traversal) ---");
+        System.out.println("\n┌───────────────────────────────────────────┐");
+        System.out.println("│    All members (linked list traversal)    │");
+        System.out.println("└───────────────────────────────────────────┘");
         member1.traverse();
     }
 
@@ -203,22 +207,13 @@ import java.util.Scanner;
         System.out.print("Enter Member ID : ");
         int id = readInt();
 
-        long start = System.nanoTime();
-        Member viaLinear = member1.linearSearch(id);
-        long linearTime = System.nanoTime() - start;
-
-        start = System.nanoTime();
         Member viaHash = member6.get(id);
-        long hashTime = System.nanoTime() - start;
 
         if (viaHash != null) {
             System.out.println("\n┌───────────────────────────────────────────┐");
             System.out.println("│            MEMBER FOUND                   │");
-            System.out.println("├───────────────────────────────────────────┤");
-            System.out.println(" " + viaHash);
             System.out.println("└───────────────────────────────────────────┘");
-            System.out.println("Linear search time: " + linearTime + " ns");
-            System.out.println("Hash table lookup time: " + hashTime + " ns");
+            System.out.println(" " + viaHash);
         } else {
             System.out.println("\n┌───────────────────────────────────────────┐");
             System.out.println("│         MEMBER NOT FOUND                  │");
@@ -257,9 +252,8 @@ import java.util.Scanner;
         if (action != null) {
             System.out.println("\n┌───────────────────────────────────────────┐");
             System.out.println("│               UNDO ACTION                 │");
-            System.out.println("├───────────────────────────────────────────┤");
-            System.out.println(" " + action);
             System.out.println("└───────────────────────────────────────────┘");
+            System.out.println(" " + action);
         }
     }
 
@@ -271,7 +265,7 @@ import java.util.Scanner;
             System.out.print("Member ID to enqueue: ");
             int id = readInt();
             Member m = member1.linearSearch(id);
-            if (m != null) member2.enqueue(m); else System.out.println("Member not found.");
+            if (m != null) member2.enqueue(m); else System.out.println("✘ Member not found.");
         } else {
             Member served = member2.dequeue();
             if (served != null) System.out.println("Now serving: " + served);
@@ -282,7 +276,7 @@ import java.util.Scanner;
     // 7. Sorting
     private static void sortingDemo() {
         Member[] base = member1.toArray();
-        if (base.length == 0) { System.out.println("No members to sort."); return; }
+        if (base.length == 0) { System.out.println("✘ No members to sort."); return; }
 
         Member[] bubble = base.clone();
         Member[] selection = base.clone();
@@ -317,13 +311,21 @@ import java.util.Scanner;
         System.out.print("Preorder:  ");  member3.preorder();
         System.out.print("Postorder: "); member3.postorder();
 
-        System.out.println("\n--- AVL Tree inorder ---");
+        System.out.println("\n┌───────────────────────────────────────────┐");
+        System.out.println("│             AVL Tree inorder              │");
+        System.out.println("└───────────────────────────────────────────┘");
         member4.inorder();
     }
 
     // load data from database
     private static void loadDataFromDatabase() {
         List<Member> members = DatabaseConnection.loadAllMembers();
+
+        if (members == null || members.isEmpty()) {
+            System.out.println("✘ No members found in database.");
+            return;
+        }
+
         for (Member m : members) {
             member1.insert(m);
             member6.put(m);
@@ -332,9 +334,9 @@ import java.util.Scanner;
             member4.insert(m);
             member5.addMemberNode(m.getMemberID());
         }
-        if (!members.isEmpty()) {
-            System.out.println("Loaded " + members.size() + " member(s) from the database.");
-        }
+
+        System.out.println("✓ " + members.size() +
+                " member(s) loaded successfully.");
     }
 
     // 10. Send data to Data Base
@@ -346,9 +348,11 @@ import java.util.Scanner;
 
         DatabaseConnection.saveAllMembers(all);
 
-        System.out.println("\n┌───────────────────────────────────────────┐");
-        System.out.println("│       DATA SAVED SUCCESSFULLY             │");
-        System.out.println("└───────────────────────────────────────────┘");
+        if (dbAvailable) {
+            System.out.println("\n┌───────────────────────────────────────────┐");
+            System.out.println("│       DATA SAVED SUCCESSFULLY             │");
+            System.out.println("└───────────────────────────────────────────┘");
+        }
     }
 
     // 9.Referral Program

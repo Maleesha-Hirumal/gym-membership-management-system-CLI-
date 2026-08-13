@@ -33,15 +33,22 @@ public class Member6_HashSet {
     }
 
     public void printTable() {
+        boolean hasRecord = false;
         for (int i = 0; i < TABLE_SIZE; i++) {
-            if (!table[i].isEmpty()) System.out.println("Bucket " + i + ": " + table[i]);
+            if (!table[i].isEmpty()) {
+                hasRecord = true;
+                System.out.println("Bucket " + i + ": " + table[i]);
+            }
+        }
+        if (!hasRecord) {
+            System.out.println("No member records are currently stored.");
         }
     }
 
     // Set ADT (duplicate email prevention)
     private HashSet<String> emailSet = new HashSet<>();
 
-    /** Time: O(1) average. Returns false if the email is already registered. */
+    // Time: O(1) average. Returns false if the email is already registered.
     public boolean addEmail(String email) {
         return emailSet.add(email);
     }
