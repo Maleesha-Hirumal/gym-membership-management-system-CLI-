@@ -20,9 +20,8 @@ import java.util.Scanner;
 
 
      // Login part
-
-
         System.out.println("--------------- LOGIN REQUIRED ---------------");
+        System.out.println("For demo Log in Purpose  ( User Name : root  ,  Password : root)...!");
         System.out.println();
 
 
