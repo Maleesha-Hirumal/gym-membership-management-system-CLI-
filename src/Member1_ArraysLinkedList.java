@@ -7,9 +7,9 @@ public class Member1_ArraysLinkedList {
 
     // Array
     private MembershipPlan[] membershipPlans = {
-            new MembershipPlan(1, "Basic", 1, 3000),
-            new MembershipPlan(2, "Premium", 3, 8000),
-            new MembershipPlan(3, "VIP", 12, 25000)
+            new MembershipPlan(1, "Basic", 1, 1500),
+            new MembershipPlan(2, "Premium", 3, 4000),
+            new MembershipPlan(3, "VIP", 12, 9000)
     };
 
     public MembershipPlan[] getMembershipPlans() {
@@ -64,7 +64,7 @@ public class Member1_ArraysLinkedList {
 
     public void traverse() {
         if (head == null) {
-            System.out.println("No members yet.");
+            System.out.println("✘ No members found.");
             return;
         }
         Node temp = head;
