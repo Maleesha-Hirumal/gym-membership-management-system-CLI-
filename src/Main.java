@@ -12,8 +12,16 @@ import java.util.Scanner;
 
     private static Scanner sc = new Scanner(System.in);
     private static boolean dbAvailable;
-
+  
+  
     public static void main(String[] args) {
+        System.out.println("██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗      ██╗");
+        System.out.println("██║    ██║██╔════╝██║     ██╔════╝██╔═══██╗████╗ ████║██╔════╝      ██║");
+        System.out.println("██║ █╗ ██║█████╗  ██║     ██║     ██║   ██║██╔████╔██║█████╗        ██║");
+        System.out.println("██║███╗██║██╔══╝  ██║     ██║     ██║   ██║██║╚██╔╝██║██╔══╝        ╚═╝");
+        System.out.println("╚███╔███╔╝███████╗███████╗╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗██╗██╗██╗");
+        System.out.println(" ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝╚═╝╚═╝╚═╝");
+     
         System.out.println("\n╔════════════════════════════════════════════════╗");
         System.out.println("║        Gym Membership Management System        ║");
         System.out.println("╚════════════════════════════════════════════════╝\n");
