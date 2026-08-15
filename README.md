@@ -1,4 +1,5 @@
 # 🏋️ Gym Membership Management System
+## Version 3.0
 
 A console-based Gym Membership Management System built in Java, developed as a group project for **CCS2300 — Data Structures and Algorithms**. The system demonstrates real, working implementations of core data structures — Arrays, Linked Lists, Stacks, Queues, Binary Search Trees, AVL Trees, Hash Tables, Set ADTs, and Graphs — integrated into a single practical application with MySQL persistence.
 
