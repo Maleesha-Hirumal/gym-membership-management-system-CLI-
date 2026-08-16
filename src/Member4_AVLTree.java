@@ -112,7 +112,7 @@ public class Member4_AVLTree {
     private void inorderRec(AVLNode n) {
         if (n == null) return;
         inorderRec(n.left);
-        System.out.print("Member ID: "+ n.data.getMemberID() + " | ");
+        System.out.print( n.data.getMemberID() + " | ");
         inorderRec(n.right);
     }
 
