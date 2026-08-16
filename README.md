@@ -1,4 +1,5 @@
 # 🏋️ Gym Membership Management System
+## Version 3.0
 
 A console-based Gym Membership Management System built in Java, developed as a group project for **CCS2300 — Data Structures and Algorithms**. The system demonstrates real, working implementations of core data structures — Arrays, Linked Lists, Stacks, Queues, Binary Search Trees, AVL Trees, Hash Tables, Set ADTs, and Graphs — integrated into a single practical application with MySQL persistence.
 
@@ -21,7 +22,7 @@ The system runs entirely in memory and only writes to the database when explicit
 - **Trainer Waiting Queue** — first-come, first-served queue for trainer assignment
 - **Sorted Member Records** — Binary Search Tree and self-balancing AVL Tree, both with full traversals
 - **Referral Network** — directed graph of member referrals, explorable via BFS and DFS
-- **Sorting Comparison** — Bubble, Selection, Insertion, Merge, and Quick Sort, benchmarked live with timing
+- **Sorting Comparison** — Bubble, Selection, Insertion, Merge, and Quick Sort, benchmarked live with timing, plus the actual sorted member order printed for verification
 - **MySQL Persistence** — loads existing data on startup, and saves on demand (never automatically)
 - **Graceful Offline Mode** — the entire system keeps working in-memory if the database is unreachable
 
@@ -33,7 +34,7 @@ The system runs entirely in memory and only writes to the database when explicit
 |---|---|
 | Language | Java (JDK 17+ recommended) |
 | Database | MySQL 8.0.46+ |
-| DB Driver | MySQL Connector/J 9.x |
+| DB Driver | MySQL Connector/J 26.7.0 |
 | Interface | Command-Line Interface (CLI) |
 
 ---
@@ -42,28 +43,27 @@ The system runs entirely in memory and only writes to the database when explicit
 
 ```
 gym-membership-system-CLI/
-database scrypt/
- └── gym_db.sql
-docs/
- ├── Uml class dagram
- ├── ER Diagram
- ├── Flow chart
- └── Report PDF
-lib/
- └──My sql conector
-src/
- ├── Main.java                      # Entry point, login screen, CLI menu
- ├── DatabaseConnection.java        # All MySQL connect/load/save logic
- ├── Member.java                    # Member data model
- ├── MembershipPlan.java            # Plan data model
- ├── Member1_ArraysLinkedList.java  # Array + Linked List + Linear Search
- ├── Member2_StackQueue.java        # Stack (undo) + Queue (trainer queue) + Bubble Sort
- ├── Member3_BST.java               # Binary Search Tree + Selection Sort
- ├── Member4_AVLTree.java           # AVL Tree + Insertion Sort
- ├── Member5_Graph.java             # Referral Graph (BFS/DFS) + Merge Sort
- ├── Member6_HashSet.java           # Hash Table + Set ADT + Quick Sort
- ├── gym_db.sql                     # Run once in MySQL Workbench to set up the schema
- └── README.md
+├── database-script/
+│   └── gym_db.sql                     # Run once in MySQL Workbench to set up the schema
+├── docs/
+│   ├── UML_Class_Diagram.png
+│   ├── ER_Diagram.png
+│   ├── Flowchart.png
+│   └── Report.pdf
+├── lib/
+│   └── mysql-connector-j-26.7.0.jar
+├── src/
+│   ├── Main.java                      # Entry point, login screen, CLI menu
+│   ├── DatabaseConnection.java        # All MySQL connect/load/save logic
+│   ├── Member.java                    # Member data model
+│   ├── MembershipPlan.java            # Plan data model
+│   ├── Member1_ArraysLinkedList.java  # Array + Linked List + Linear Search
+│   ├── Member2_StackQueue.java        # Stack (undo) + Queue (trainer queue) + Bubble Sort
+│   ├── Member3_BST.java               # Binary Search Tree + Selection Sort
+│   ├── Member4_AVLTree.java           # AVL Tree + Insertion Sort
+│   ├── Member5_Graph.java             # Referral Graph (BFS/DFS) + Merge Sort
+│   └── Member6_HashSet.java           # Hash Table + Set ADT + Quick Sort
+└── README.md
 ```
 
 ---
@@ -72,44 +72,48 @@ src/
 
 ### 1. Set up the database
 
-Open **MySQL Workbench** and run `gym_db.sql`. This creates the `gym_db` database, the `plans` and `members` tables (linked by a foreign key), and seeds the three fixed membership plans. Table creation happens entirely through this script — the Java code does not create tables itself.
+Open **MySQL Workbench** and run `database-script/gym_db.sql`. This creates the `gym_db` database, the `plans` and `members` tables (linked by a foreign key), and seeds the three fixed membership plans. Table creation happens entirely through this script — the Java code does not create tables itself.
 
 ### 2. Configure your credentials
 
-Open `DatabaseConnection.java` and update these two lines to match your MySQL Workbench login:
+Open `src/DatabaseConnection.java` and update these two lines to match your MySQL Workbench login:
 
 ```java
 private static final String USER = "root";
 private static final String PASSWORD = "your_password_here";
 ```
 
-### 3. Download the MySQL JDBC driver
+### 3. MySQL JDBC Driver
 
-Java needs a driver jar to talk to MySQL:
+The driver jar (`mysql-connector-j-26.7.0.jar`) is already included in the `lib/` folder — no separate download needed.
 
-It  is in lib folder on the  Project structure
+> **Recommended: use IntelliJ IDEA.** Open the project folder in IntelliJ, then add the jar as a library: **File > Project Structure > Libraries > "+" > Java**, and select `lib/mysql-connector-j-26.7.0.jar`. Then just run `Main.java` directly from the editor.
+>
+> Command line steps are below as an alternative.
 
-(### we recomend intellij IDE or else folllow these steps)
-
-### 4. Compile
+### 4. Compile (Command Line)
 
 ```bash
-javac *.java
+javac -d out src/*.java
 ```
 
-### 5. Run
+This compiles everything into a separate `out/` folder instead of scattering `.class` files into `src/`.
+
+### 5. Run (Command Line)
 
 **Windows:**
 ```bash
-java -cp .;mysql-connector-j-9.7.0.jar Main
+java -cp out;lib/mysql-connector-j-26.7.0.jar Main
 ```
 
 **Mac/Linux:**
 ```bash
-java -cp .:mysql-connector-j-9.7.0.jar Main
+java -cp out:lib/mysql-connector-j-26.7.0.jar Main
 ```
 
 > If MySQL isn't running or the driver jar is missing, the program still works — it simply runs fully in-memory and shows `Cannot connect to the database.`
+
+> If box-drawing characters (┌ ─ ┐) show as `?` marks in Command Prompt, run `chcp 65001` first, or use IntelliJ IDEA instead.
 
 ### 6. Login
 
@@ -124,16 +128,16 @@ Password: root
 ## 📋 Menu Overview
 
 ```
-1.  Register New Member
-2.  View All Members
-3.  Find a Member
-4.  Remove a Member
-5.  Undo Last Action
-6.  Trainer Waiting Queue
-7.  Sort All Members
-8.  View Sorted Member Records
-9.  Referral Program
-10. Save All Data to Database
+1.  Register New Member         (Linked List, Hash Table, Set ADT, BST, AVL Tree, Graph)
+2.  View All Members            (Linked List)
+3.  Find a Member                (Hash Table)
+4.  Remove a Member              (Linked List, BST, AVL Tree)
+5.  Undo Last Action             (Stack)
+6.  Trainer Waiting Queue        (Queue)
+7.  Sort All Members             (Bubble, Selection, Insertion, Merge, Quick Sort)
+8.  View Sorted Member Records   (BST, AVL Tree Traversal)
+9.  Referral Program             (Graph - BFS/DFS)
+10. Save All Data to Database    (MySQL)
 0.  Exit
 ```
 
@@ -197,9 +201,7 @@ One plan can be linked to many members (one-to-many).
 | Task 3 | D A L C Perera | CIT-25-01-0348 | Binary Search Tree, Selection Sort |
 | Task 4 | M W R Rashmika | CIT-25-01-0356 | AVL Tree, Insertion Sort |
 | Task 5 | P A A Vimod | CIT-25-01-0569 | Graph, BFS/DFS, Merge Sort |
-| Task 6 | H S S L Perera | CIT-25-01-0345| Hash Table, Set ADT, Quick Sort |
-
-*(Replace with actual names before submission.)*
+| Task 6 | H S S L Perera | CIT-25-01-0345 | Hash Table, Set ADT, Quick Sort |
 
 ---
 
