@@ -12,8 +12,16 @@ import java.util.Scanner;
 
     private static Scanner sc = new Scanner(System.in);
     private static boolean dbAvailable;
-
+  
+  
     public static void main(String[] args) {
+        System.out.println("██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗      ██╗");
+        System.out.println("██║    ██║██╔════╝██║     ██╔════╝██╔═══██╗████╗ ████║██╔════╝      ██║");
+        System.out.println("██║ █╗ ██║█████╗  ██║     ██║     ██║   ██║██╔████╔██║█████╗        ██║");
+        System.out.println("██║███╗██║██╔══╝  ██║     ██║     ██║   ██║██║╚██╔╝██║██╔══╝        ╚═╝");
+        System.out.println("╚███╔███╔╝███████╗███████╗╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗██╗██╗██╗");
+        System.out.println(" ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝╚═╝╚═╝╚═╝");
+     
         System.out.println("\n╔════════════════════════════════════════════════╗");
         System.out.println("║        Gym Membership Management System        ║");
         System.out.println("╚════════════════════════════════════════════════╝\n");
@@ -291,7 +299,7 @@ import java.util.Scanner;
         long t5 = System.nanoTime(); member6.quickSort(quick, 0, quick.length - 1); long quickTime = System.nanoTime() - t5;
 
         System.out.println("\n┌────────────────────────────────────────────────────┐");
-        System.out.println("│            SORTING PERFORMANCE                     │");
+        System.out.println("│         SORTING PERFORMANCE (Nano second)          │");
         System.out.println("├──────────────────────┬─────────────────────────────┤");
         System.out.printf("│ Bubble Sort          │ %-25d │%n", bubbleTime);
         System.out.printf("│ Selection Sort       │ %-25d │%n", selectionTime);
@@ -300,6 +308,13 @@ import java.util.Scanner;
         System.out.printf("│ Quick Sort           │ %-25d │%n", quickTime);
         System.out.println("└──────────────────────┴─────────────────────────────┘");
         System.out.println("(Times fluctuate on small datasets - add more members for a fairer comparison.)");
+
+        System.out.println("\n┌───────────────────────────────────────────┐");
+        System.out.println("│         SORTED ORDER (by Member ID)       │");
+        System.out.println("└───────────────────────────────────────────┘");
+        for (Member m : quick) {
+            System.out.println(" " + m);
+        }
     }
 
     // 8. BST / AVL traversals
@@ -307,13 +322,14 @@ import java.util.Scanner;
         System.out.println("\n┌───────────────────────────────────────────┐");
         System.out.println("│            TREE TRAVERSALS                │");
         System.out.println("└───────────────────────────────────────────┘");
-        System.out.print("Inorder:   ");   member3.inorder();
-        System.out.print("Preorder:  ");  member3.preorder();
+        System.out.print("Inorder  : "); member3.inorder();
+        System.out.print("Preorder : "); member3.preorder();
         System.out.print("Postorder: "); member3.postorder();
 
         System.out.println("\n┌───────────────────────────────────────────┐");
         System.out.println("│             AVL Tree inorder              │");
         System.out.println("└───────────────────────────────────────────┘");
+        System.out.print("Member ID :");
         member4.inorder();
     }
 
